@@ -4,7 +4,6 @@ import numpy as np
 from os import listdir
 from skimage import io
 from scipy.misc import imresize
-from keras.preprocessing.image import array_to_img, img_to_array, load_img
 
 def get_img(data_path):
     # Getting image array from path:
@@ -47,6 +46,7 @@ def get_dataset(dataset_path='Data/Train_Data'):
             os.makedirs('Data/npy_train_data/')
         np.save('Data/npy_train_data/X.npy', X)
         np.save('Data/npy_train_data/Y.npy', Y)
+    X /= 255.
     from sklearn.model_selection import train_test_split
     X, X_test, Y, Y_test = train_test_split(X, Y, test_size=0.1, random_state=42)
     return X, X_test, Y, Y_test
